@@ -25,8 +25,8 @@ class SleepAdapter internal constructor(context: Context)
     override fun onBindViewHolder(holder: SleepViewHolder, position: Int) {
         val sleepRec:Sleep = sleeps.get(position)
         holder.textViewQualityValue.text = sleepRec.quality.toString()
-        holder.textViewStart.text = SimpleDateFormat("yyyy,MM,dd,HH:MM").format(sleepRec.startDate.toString())
-        holder.textViewEnd.text = SimpleDateFormat("yyyy,MM,dd,HH:MM").format(sleepRec.endDate.toString())
+        holder.textViewStart.text = SimpleDateFormat("yyyy,MM,dd,HH:MM").format(sleepRec.startDate)
+        holder.textViewEnd.text = SimpleDateFormat("yyyy,MM,dd,HH:MM").format(sleepRec.endDate)
     }
 
     override fun getItemCount(): Int {
@@ -37,5 +37,10 @@ class SleepAdapter internal constructor(context: Context)
 
         val itemView = inflater.inflate(R.layout.recyclerview_item, parent, false)
         return SleepViewHolder(itemView)
+    }
+
+    fun setSleep(sleeps: List<Sleep>){
+        this.sleeps = sleeps
+        notifyDataSetChanged()
     }
 }
